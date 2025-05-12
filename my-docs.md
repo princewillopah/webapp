@@ -1,0 +1,21 @@
+
+
+az webapp deployment source config-zip --resource-group <ResourceGroupName> --name <AppServiceName> --src uploadsite.zip
+az webapp deployment source config-zip --resource-group <ResourceGroupName> --name <AppServiceName> --src uploadsite.zip
+
+zip -r uploadsite.zip index.php upload.php phpinfo.php .user.ini file_upload.php  
+
+az webapp deployment source config-zip --resource-group WebAppRG --name test-appx --src uploadsite.zip
+
+az webapp restart --resource-group WebAppRG  --name test-appx
+
+
+upload_max_filesize = 100M 
+post_max_size = 110M 
+memory_limit = 256M 
+max_execution_time = 300 
+max_input_time = 300
+
+zip -r uploadsite.zip phpinfo.php .user.ini file_upload.php
+az webapp deployment source config-zip --resource-group WebAppRG --name webapp2x --src uploadsite.zip
+az webapp restart --resource-group WebAppRG  --name webapp2x
